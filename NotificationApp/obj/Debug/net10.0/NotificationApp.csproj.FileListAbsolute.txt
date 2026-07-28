@@ -1,0 +1,14 @@
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/bin/Debug/net10.0/NotificationApp
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/bin/Debug/net10.0/NotificationApp.deps.json
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/bin/Debug/net10.0/NotificationApp.runtimeconfig.json
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/bin/Debug/net10.0/NotificationApp.dll
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/bin/Debug/net10.0/NotificationApp.pdb
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/obj/Debug/net10.0/NotificationApp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/obj/Debug/net10.0/NotificationApp.AssemblyInfoInputs.cache
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/obj/Debug/net10.0/NotificationApp.AssemblyInfo.cs
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/obj/Debug/net10.0/NotificationApp.csproj.CoreCompileInputs.cache
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/obj/Debug/net10.0/NotificationApp.dll
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/obj/Debug/net10.0/refint/NotificationApp.dll
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/obj/Debug/net10.0/NotificationApp.pdb
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/obj/Debug/net10.0/NotificationApp.genruntimeconfig.cache
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/NotificationApp/obj/Debug/net10.0/ref/NotificationApp.dll

@@ -1,0 +1,14 @@
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/bin/Debug/net10.0/M1_RetailBilling
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/bin/Debug/net10.0/M1_RetailBilling.deps.json
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/bin/Debug/net10.0/M1_RetailBilling.runtimeconfig.json
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/bin/Debug/net10.0/M1_RetailBilling.dll
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/bin/Debug/net10.0/M1_RetailBilling.pdb
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/obj/Debug/net10.0/M1_RetailBilling.GeneratedMSBuildEditorConfig.editorconfig
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/obj/Debug/net10.0/M1_RetailBilling.AssemblyInfoInputs.cache
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/obj/Debug/net10.0/M1_RetailBilling.AssemblyInfo.cs
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/obj/Debug/net10.0/M1_RetailBilling.csproj.CoreCompileInputs.cache
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/obj/Debug/net10.0/M1_RetailBilling.dll
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/obj/Debug/net10.0/refint/M1_RetailBilling.dll
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/obj/Debug/net10.0/M1_RetailBilling.pdb
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/obj/Debug/net10.0/M1_RetailBilling.genruntimeconfig.cache
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/M1_RetailBilling/obj/Debug/net10.0/ref/M1_RetailBilling.dll

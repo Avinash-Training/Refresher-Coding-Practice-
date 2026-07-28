@@ -1,0 +1,14 @@
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/bin/Debug/net10.0/BankBalanceCalculator
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/bin/Debug/net10.0/BankBalanceCalculator.deps.json
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/bin/Debug/net10.0/BankBalanceCalculator.runtimeconfig.json
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/bin/Debug/net10.0/BankBalanceCalculator.dll
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/bin/Debug/net10.0/BankBalanceCalculator.pdb
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/obj/Debug/net10.0/BankBalanceCalculator.GeneratedMSBuildEditorConfig.editorconfig
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/obj/Debug/net10.0/BankBalanceCalculator.AssemblyInfoInputs.cache
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/obj/Debug/net10.0/BankBalanceCalculator.AssemblyInfo.cs
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/obj/Debug/net10.0/BankBalanceCalculator.csproj.CoreCompileInputs.cache
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/obj/Debug/net10.0/BankBalanceCalculator.dll
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/obj/Debug/net10.0/refint/BankBalanceCalculator.dll
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/obj/Debug/net10.0/BankBalanceCalculator.pdb
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/obj/Debug/net10.0/BankBalanceCalculator.genruntimeconfig.cache
+/Users/avinashkumar/Desktop/Capgemini Coding Practice/BankBalanceCalculator/obj/Debug/net10.0/ref/BankBalanceCalculator.dll
