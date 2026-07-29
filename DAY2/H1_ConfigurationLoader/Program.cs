@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// H1 - Configuration Loader
-// Uses: interface, out parameter, params, TryLoad pattern (like TryParse but for config)
-
-// Simple key-value config model
+// H1 - Config Loader using interface, out, and params
 class AppConfiguration
 {
     public string SourceName { get; set; } = "";
@@ -18,15 +15,12 @@ class AppConfiguration
     }
 }
 
-// Every config source must follow this contract
 interface IConfigurationSource
 {
     string SourceName { get; }
-    // Returns true if load succeeded, puts data in 'config' via out
     bool TryLoad(out AppConfiguration config);
 }
 
-// Source 1: reads from environment variables - simulated as not available
 class EnvSource : IConfigurationSource
 {
     public string SourceName => "EnvironmentVariables";
@@ -39,7 +33,7 @@ class EnvSource : IConfigurationSource
         string val = Environment.GetEnvironmentVariable("APP_DB") ?? "";
         if (string.IsNullOrEmpty(val))
         {
-            Console.WriteLine($"  {SourceName}: no data found. Skipping.\n");
+            Console.WriteLine($"  {SourceName}: no data. Skipping.\n");
             return false;
         }
 
@@ -49,7 +43,6 @@ class EnvSource : IConfigurationSource
     }
 }
 
-// Source 2: reads from a JSON file - simulated as missing
 class FileSource : IConfigurationSource
 {
     private readonly string _path;
@@ -60,7 +53,7 @@ class FileSource : IConfigurationSource
     public bool TryLoad(out AppConfiguration config)
     {
         config = null!;
-        Console.WriteLine($"  Trying {SourceName} ('{_path}')...");
+        Console.WriteLine($"  Trying {SourceName} ({_path})...");
 
         if (!System.IO.File.Exists(_path))
         {
@@ -74,7 +67,6 @@ class FileSource : IConfigurationSource
     }
 }
 
-// Source 3: hardcoded defaults - always succeeds, acts as final fallback
 class DefaultSource : IConfigurationSource
 {
     public string SourceName => "Defaults";
@@ -82,31 +74,22 @@ class DefaultSource : IConfigurationSource
     public bool TryLoad(out AppConfiguration config)
     {
         Console.WriteLine($"  Trying {SourceName}...");
-
         config = new AppConfiguration { SourceName = SourceName };
-        config.Settings["db_host"]  = "localhost";
-        config.Settings["db_port"]  = "5432";
-        config.Settings["timeout"]  = "30";
-
-        Console.WriteLine($"  {SourceName}: loaded successfully.\n");
+        config.Settings["db_host"] = "localhost";
+        config.Settings["db_port"] = "5432";
+        config.Settings["timeout"] = "30";
+        Console.WriteLine($"  {SourceName}: loaded.\n");
         return true;
     }
 }
 
-// Loader tries each source one by one and stops at the first success
 static class ConfigurationLoader
 {
-    // params lets the caller pass any number of sources without building an array first
     public static bool Load(out AppConfiguration config, params IConfigurationSource[] sources)
     {
         config = null!;
-
         foreach (IConfigurationSource source in sources)
-        {
-            if (source.TryLoad(out config))
-                return true;
-        }
-
+            if (source.TryLoad(out config)) return true;
         return false;
     }
 }
@@ -126,12 +109,12 @@ class Program
 
         if (ok)
         {
-            Console.WriteLine("Configuration loaded:");
+            Console.WriteLine("Loaded:");
             config.Print();
         }
         else
         {
-            Console.WriteLine("Failed to load any configuration.");
+            Console.WriteLine("No configuration loaded.");
         }
     }
 }

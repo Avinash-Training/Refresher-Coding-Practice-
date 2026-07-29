@@ -1,16 +1,10 @@
 ﻿using System;
 
-// M3 - Log File Parser
-// Demonstrates: in parameters (read-only ref), out parameters, ref parameters
-
-// Severity levels supported by the log parser
+// M3 - Log Line Parser using in, out, and ref parameters
 enum LogLevel { Trace, Debug, Info, Warning, Error, Fatal, Unknown }
 
 static class LogParser
 {
-    // in: passes logLine as read-only reference - avoids copying for large value-type structs
-    // out: returns parsed timestamp and log level without needing a return type wrapper
-    // ref: linesProcessed is shared across calls and incremented each time parsing succeeds
     public static bool ParseLogLine(
         in string logLine,
         out DateTime timestamp,
@@ -18,28 +12,21 @@ static class LogParser
         ref int linesProcessed)
     {
         timestamp = DateTime.MinValue;
-        level     = LogLevel.Unknown;
+        level = LogLevel.Unknown;
 
         if (string.IsNullOrWhiteSpace(logLine))
             return false;
 
-        // Expected format: "2023-10-27 14:30:00 ERROR: Disk full"
         string[] parts = logLine.Split(' ', 3);
+        if (parts.Length < 3) return false;
 
-        if (parts.Length < 3)
+        if (!DateTime.TryParse($"{parts[0]} {parts[1]}", out timestamp))
             return false;
 
-        // Combine date and time tokens then parse as DateTime
-        string dateTimePart = $"{parts[0]} {parts[1]}";
-        if (!DateTime.TryParse(dateTimePart, out timestamp))
-            return false;
-
-        // Extract the severity keyword before the colon
         string rest = parts[2];
-        int colonIdx = rest.IndexOf(':');
-        string levelStr = colonIdx >= 0 ? rest[..colonIdx].Trim() : rest.Trim();
+        int colon = rest.IndexOf(':');
+        string levelStr = colon >= 0 ? rest[..colon].Trim() : rest.Trim();
 
-        // TryParse the enum - falls back to Unknown if unrecognised
         if (!Enum.TryParse<LogLevel>(levelStr, ignoreCase: true, out level))
             level = LogLevel.Unknown;
 
@@ -54,43 +41,26 @@ class Program
     {
         Console.WriteLine("=== M3: Log File Parser ===\n");
 
-        int linesProcessed = 0;
+        int count = 0;
 
-        string[] logLines =
+        string[] lines =
         {
             "2023-10-27 14:30:00 ERROR: Disk full",
-            "2023-10-27 14:31:05 WARNING: Memory usage high",
+            "2023-10-27 14:31:05 WARNING: Memory high",
             "2023-10-27 14:32:10 INFO: Service started",
-            "2023-10-27 14:33:00 FATAL: Unhandled exception",
-            "INVALID LINE WITHOUT PROPER FORMAT",
+            "INVALID LINE"
         };
 
-        foreach (string line in logLines)
+        foreach (string line in lines)
         {
-            bool ok = LogParser.ParseLogLine(
-                in line,
-                out DateTime timestamp,
-                out LogLevel level,
-                ref linesProcessed);
+            bool ok = LogParser.ParseLogLine(in line, out DateTime ts, out LogLevel lvl, ref count);
 
             if (ok)
-            {
-                Console.WriteLine($"  Line      : \"{line}\"");
-                Console.WriteLine($"  Timestamp : {timestamp:yyyy-MM-dd HH:mm:ss}");
-                Console.WriteLine($"  LogLevel  : {level}");
-            }
+                Console.WriteLine($"  [{lvl}] {ts:yyyy-MM-dd HH:mm:ss}  |  {line}");
             else
-            {
-                Console.WriteLine($"  Failed    : \"{line}\" - could not parse");
-            }
-            Console.WriteLine();
+                Console.WriteLine($"  Failed to parse: {line}");
         }
 
-        Console.WriteLine($"Total lines processed (ref counter): {linesProcessed}");
-
-        Console.WriteLine();
-        Console.WriteLine("'in' passes by read-only reference - the caller's value cannot be changed.");
-        Console.WriteLine("For large value-type structs this avoids copying the full struct to the stack.");
-        Console.WriteLine("For strings it acts as a self-documenting contract that the method won't mutate the input.");
+        Console.WriteLine($"\nTotal parsed: {count}");
     }
 }
