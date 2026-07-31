@@ -1,6 +1,5 @@
 ﻿using System;
 
-// M1 - Compound Interest Calculator with overloading and default parameters
 static class FinancialCalculator
 {
     public static double CalculateCompoundInterest(

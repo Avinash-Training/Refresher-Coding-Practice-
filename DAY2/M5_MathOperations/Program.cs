@@ -1,6 +1,5 @@
 ﻿using System;
 
-// M5 - Add and Multiply with overloading and params
 static class MathOperations
 {
     public static int Add(int a, int b) => a + b;

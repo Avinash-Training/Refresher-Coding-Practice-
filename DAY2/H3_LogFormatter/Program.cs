@@ -1,6 +1,5 @@
 ﻿using System;
 
-// H3 - Log message formatter using params and a local function
 static class Logger
 {
     public static string FormatLogMessage(string template, params object[] args)

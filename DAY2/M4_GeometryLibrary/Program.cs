@@ -1,6 +1,5 @@
 ﻿using System;
 
-// M4 - Area calculator with method overloading and default/named arguments
 static class GeometryLibrary
 {
     public static double CalculateArea(double radius, int decimals = 2)

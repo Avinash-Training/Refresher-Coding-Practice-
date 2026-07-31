@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-// Q2 - Training Program Management
-
 class Schedule
 {
     public DateTime Date { get; set; }

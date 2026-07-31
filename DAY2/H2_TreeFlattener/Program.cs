@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// H2 - Flatten a tree using recursion, local function, ref depth, and params
 class TreeNode
 {
     public string Value { get; set; }

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-// Q1 - Online Exam Portal
-
 class Question
 {
     public int Id { get; set; }

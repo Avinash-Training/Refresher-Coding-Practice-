@@ -1,6 +1,5 @@
 ﻿using System;
 
-// M3 - Log Line Parser using in, out, and ref parameters
 enum LogLevel { Trace, Debug, Info, Warning, Error, Fatal, Unknown }
 
 static class LogParser

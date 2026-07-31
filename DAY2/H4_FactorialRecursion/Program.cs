@@ -1,6 +1,5 @@
 ﻿using System;
 
-// H4 - Factorial, Fibonacci and Sum of Digits using recursion
 static class MathRecursion
 {
     public static long Factorial(int n)

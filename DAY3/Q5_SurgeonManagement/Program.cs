@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-// Q5 - Surgeon Management System
-
 class Hospital
 {
     public int Id { get; set; }

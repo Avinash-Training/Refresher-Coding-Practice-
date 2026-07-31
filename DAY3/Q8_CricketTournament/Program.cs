@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-// Q8 - Cricket Tournament Management
-
 class Player
 {
     public int Id { get; set; }

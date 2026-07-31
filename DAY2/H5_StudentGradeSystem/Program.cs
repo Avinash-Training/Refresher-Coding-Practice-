@@ -1,6 +1,5 @@
 ﻿using System;
 
-// H5 - Student grade system with overloading, params, out, and default parameters
 static class GradeCalculator
 {
     public static double GetAverage(double s1, double s2, double s3)

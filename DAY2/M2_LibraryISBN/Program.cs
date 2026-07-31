@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// M2 - ISBN Order Processor using params, out, and TryParse pattern
 static class LibraryOrderProcessor
 {
     public static bool TryParseISBN(string rawIsbn, out string cleanIsbn)

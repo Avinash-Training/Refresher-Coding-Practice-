@@ -1,43 +1,31 @@
 ﻿using System;
 
-// Interface for shipping cost strategy
 interface IShippingCalculator
 {
     double CalculateCost(double weightKg, double distanceKm);
 }
 
-// Standard packages: flat rate per kg per km
 class StandardShipping : IShippingCalculator
 {
-    private const double RatePerKgPerKm = 0.05;
-
     public double CalculateCost(double weightKg, double distanceKm)
     {
-        return weightKg * distanceKm * RatePerKgPerKm;
+        return weightKg * distanceKm * 0.05;
     }
 }
 
-// Express packages: 2x rate + ₹50 handling fee
 class ExpressShipping : IShippingCalculator
 {
-    private const double RatePerKgPerKm = 0.10;
-    private const double HandlingFee    = 50.0;
-
     public double CalculateCost(double weightKg, double distanceKm)
     {
-        return (weightKg * distanceKm * RatePerKgPerKm) + HandlingFee;
+        return (weightKg * distanceKm * 0.10) + 50.0;
     }
 }
 
-// Fragile packages: 1.5x rate + ₹100 special handling
 class FragileShipping : IShippingCalculator
 {
-    private const double RatePerKgPerKm  = 0.075;
-    private const double SpecialHandling = 100.0;
-
     public double CalculateCost(double weightKg, double distanceKm)
     {
-        return (weightKg * distanceKm * RatePerKgPerKm) + SpecialHandling;
+        return (weightKg * distanceKm * 0.075) + 100.0;
     }
 }
 
@@ -59,9 +47,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("=== Logistics Shipping Cost Calculator ===\n");
+        Console.WriteLine("=== Shipping Cost Calculator ===\n");
 
-        // Package type selection
         IShippingCalculator calculator = null;
         string packageType = "";
         while (calculator == null)
@@ -70,7 +57,7 @@ class Program
             packageType = Console.ReadLine();
             calculator = ShippingFactory.GetCalculator(packageType);
             if (calculator == null)
-                Console.WriteLine("Invalid package type. Please enter Standard, Express, or Fragile.");
+                Console.WriteLine("Please enter Standard, Express, or Fragile.");
         }
 
         double weight   = ReadPositiveDouble("Enter Package Weight (kg): ");
@@ -79,11 +66,10 @@ class Program
         double cost = calculator.CalculateCost(weight, distance);
 
         Console.WriteLine();
-        Console.WriteLine("=== Shipping Cost Summary ===");
-        Console.WriteLine($"Package Type   : {packageType.Trim()}");
-        Console.WriteLine($"Weight         : {weight} kg");
-        Console.WriteLine($"Distance       : {distance} km");
-        Console.WriteLine($"Shipping Cost  : ₹{Math.Round(cost, 2)}");
+        Console.WriteLine($"Package Type  : {packageType.Trim()}");
+        Console.WriteLine($"Weight        : {weight} kg");
+        Console.WriteLine($"Distance      : {distance} km");
+        Console.WriteLine($"Shipping Cost : {Math.Round(cost, 2)}");
     }
 
     static double ReadPositiveDouble(string prompt)
@@ -93,14 +79,9 @@ class Program
         {
             Console.Write(prompt);
             string input = Console.ReadLine();
-            if (!double.TryParse(input, out value))
+            if (!double.TryParse(input, out value) || value <= 0)
             {
-                Console.WriteLine("Invalid input. Please enter a valid numeric value.");
-                continue;
-            }
-            if (value <= 0)
-            {
-                Console.WriteLine("Value must be greater than zero.");
+                Console.WriteLine("Enter a valid positive number.");
                 continue;
             }
             break;

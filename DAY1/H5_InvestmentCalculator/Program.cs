@@ -1,13 +1,11 @@
 ﻿using System;
 
-// Interface for all investment calculators
 interface IInvestmentCalculator
 {
     double CalculateReturn(double principal, double annualRatePercent, int years);
     string InvestmentType { get; }
 }
 
-// Simple Interest: Return = P + (P * R * T) / 100
 class SimpleInterestCalculator : IInvestmentCalculator
 {
     public string InvestmentType => "Simple Interest";
@@ -19,10 +17,9 @@ class SimpleInterestCalculator : IInvestmentCalculator
     }
 }
 
-// Compound Interest: Return = P * (1 + R/100)^T
 class CompoundInterestCalculator : IInvestmentCalculator
 {
-    public string InvestmentType => "Compound Interest (Annual)";
+    public string InvestmentType => "Compound Interest";
 
     public double CalculateReturn(double principal, double annualRatePercent, int years)
     {
@@ -30,7 +27,6 @@ class CompoundInterestCalculator : IInvestmentCalculator
     }
 }
 
-// Recurring Deposit: Future Value = P * [((1 + R/100)^T - 1) / (R/100)]
 class RecurringDepositCalculator : IInvestmentCalculator
 {
     public string InvestmentType => "Recurring Deposit";
@@ -38,10 +34,8 @@ class RecurringDepositCalculator : IInvestmentCalculator
     public double CalculateReturn(double monthlyDeposit, double annualRatePercent, int years)
     {
         double monthlyRate = annualRatePercent / (12 * 100);
-        int    months      = years * 12;
-        // Standard RD maturity formula
-        double maturity = monthlyDeposit * ((Math.Pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
-        return maturity;
+        int months = years * 12;
+        return monthlyDeposit * ((Math.Pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
     }
 }
 
@@ -63,9 +57,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("=== Investment Return Calculator ===\n");
+        Console.WriteLine("=== Investment Calculator ===\n");
 
-        // Investment type
         IInvestmentCalculator calculator = null;
         string investmentType = "";
         while (calculator == null)
@@ -74,32 +67,30 @@ class Program
             investmentType = Console.ReadLine();
             calculator = InvestmentFactory.GetCalculator(investmentType);
             if (calculator == null)
-                Console.WriteLine("Invalid type. Please enter Simple, Compound, or Recurring.");
+                Console.WriteLine("Please enter Simple, Compound, or Recurring.");
         }
 
         double principal = ReadPositiveDouble(
-            calculator.InvestmentType.Contains("Recurring")
-                ? "Enter Monthly Deposit Amount (₹): "
-                : "Enter Principal Amount (₹): ");
+            calculator.InvestmentType == "Recurring Deposit"
+                ? "Enter Monthly Deposit Amount: "
+                : "Enter Principal Amount: ");
 
-        double rate = ReadRateDouble("Enter Annual Interest Rate (%): ");
-        int    years = ReadPositiveInt("Enter Investment Duration (years): ");
+        double rate  = ReadRateDouble("Enter Annual Interest Rate (%): ");
+        int    years = ReadPositiveInt("Enter Duration (years): ");
 
         double projectedValue = calculator.CalculateReturn(principal, rate, years);
-        double totalInvested  = calculator.InvestmentType.Contains("Recurring")
+        double totalInvested  = calculator.InvestmentType == "Recurring Deposit"
                                 ? principal * years * 12
                                 : principal;
-        double totalReturn    = projectedValue - totalInvested;
 
         Console.WriteLine();
-        Console.WriteLine("=== Investment Summary ===");
-        Console.WriteLine($"Investment Type    : {calculator.InvestmentType}");
-        Console.WriteLine($"Principal / Deposit: ₹{principal}");
-        Console.WriteLine($"Annual Rate        : {rate}%");
-        Console.WriteLine($"Duration           : {years} year(s)");
-        Console.WriteLine($"Total Invested     : ₹{Math.Round(totalInvested, 2)}");
-        Console.WriteLine($"Projected Value    : ₹{Math.Round(projectedValue, 2)}");
-        Console.WriteLine($"Total Return       : ₹{Math.Round(totalReturn, 2)}");
+        Console.WriteLine($"Type            : {calculator.InvestmentType}");
+        Console.WriteLine($"Principal       : {principal}");
+        Console.WriteLine($"Rate            : {rate}%");
+        Console.WriteLine($"Duration        : {years} year(s)");
+        Console.WriteLine($"Total Invested  : {Math.Round(totalInvested, 2)}");
+        Console.WriteLine($"Projected Value : {Math.Round(projectedValue, 2)}");
+        Console.WriteLine($"Total Return    : {Math.Round(projectedValue - totalInvested, 2)}");
     }
 
     static double ReadPositiveDouble(string prompt)
@@ -108,17 +99,8 @@ class Program
         while (true)
         {
             Console.Write(prompt);
-            string input = Console.ReadLine();
-            if (!double.TryParse(input, out value))
-            {
-                Console.WriteLine("Invalid input. Please enter a valid numeric value.");
-                continue;
-            }
-            if (value <= 0)
-            {
-                Console.WriteLine("Value must be greater than zero.");
-                continue;
-            }
+            if (!double.TryParse(Console.ReadLine(), out value) || value <= 0)
+            { Console.WriteLine("Enter a valid positive number."); continue; }
             break;
         }
         return value;
@@ -130,17 +112,8 @@ class Program
         while (true)
         {
             Console.Write(prompt);
-            string input = Console.ReadLine();
-            if (!double.TryParse(input, out value))
-            {
-                Console.WriteLine("Invalid input. Please enter a valid numeric value.");
-                continue;
-            }
-            if (value <= 0 || value > 100)
-            {
-                Console.WriteLine("Rate must be between 0.01 and 100.");
-                continue;
-            }
+            if (!double.TryParse(Console.ReadLine(), out value) || value <= 0 || value > 100)
+            { Console.WriteLine("Enter a rate between 0.01 and 100."); continue; }
             break;
         }
         return value;
@@ -152,17 +125,8 @@ class Program
         while (true)
         {
             Console.Write(prompt);
-            string input = Console.ReadLine();
-            if (!int.TryParse(input, out value))
-            {
-                Console.WriteLine("Invalid input. Please enter a whole number.");
-                continue;
-            }
-            if (value <= 0)
-            {
-                Console.WriteLine("Duration must be at least 1 year.");
-                continue;
-            }
+            if (!int.TryParse(Console.ReadLine(), out value) || value <= 0)
+            { Console.WriteLine("Enter a valid positive number."); continue; }
             break;
         }
         return value;

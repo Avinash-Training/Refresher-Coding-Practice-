@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-// Q4 - Train Ticketing System
-
 class Passenger
 {
     public int Id { get; set; }

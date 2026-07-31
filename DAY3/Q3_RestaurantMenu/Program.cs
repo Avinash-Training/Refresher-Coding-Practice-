@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-// Q3 - Restaurant Menu Management
-
 class MenuItem
 {
     public string Name { get; set; }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// H1 - Config Loader using interface, out, and params
 class AppConfiguration
 {
     public string SourceName { get; set; } = "";
